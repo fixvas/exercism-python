@@ -1,12 +1,7 @@
-# from string import whitespace
-
-
 def word_count(phrase):
     word_count = {}
-    for word in phrase.lower().replace(',', ' ').replace('_', ' ').split():
-        word = ''.join(filter(str.isalnum, word))
-        if word and word not in word_count:
-            word_count[word] = 1
-        elif word:
-            word_count[word] += 1
+    words = ''.join([w if w.isalnum() else ' ' for w in phrase.lower()])
+    words = words.split()
+    for word in words:
+        word_count[word] = words.count(word)
     return word_count
