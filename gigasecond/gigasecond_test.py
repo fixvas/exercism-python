@@ -35,8 +35,8 @@ class GigasecondTest(unittest.TestCase):
 
     def test_yourself(self):
         # customize this to test your birthday and find your gigasecond date:
-        your_birthday = datetime(1970, 1, 1)
-        your_gigasecond = datetime(2001, 9, 9, 1, 46, 40)
+        your_birthday = datetime(1968, 4, 22)
+        your_gigasecond = datetime(1999, 12, 30, 1, 46, 40)
 
         self.assertEqual(add_gigasecond(your_birthday), your_gigasecond)
 
