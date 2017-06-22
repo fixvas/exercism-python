@@ -12,14 +12,13 @@ class MeetupDayException(Exception):
 
 def meetup_day(year, month, weekday, des):
     weekday = list(cal.day_name).index(weekday)
-    days = []
-    for week in cal.monthcalendar(year, month):
-        if week[weekday]:
-            days.append(week[weekday])
+    
+    days = [week[weekday] for week in cal.monthcalendar(year, month) \
+            if week[weekday]]
         
     if des == 'teenth':
         return date(year, month, set(days).intersection(TEENTH_DAYS).pop())
-    if des in DESCRIPTORS:
+    else:
         try:
             return date(year, month, days[DESCRIPTORS[des]])
         except IndexError:
