@@ -5,19 +5,13 @@ def rotate(phrase, key):
     coded_phrase = []
     for char in phrase:
         if char.islower():
-            x = ascii_lowercase.index(char)
-            y = (x + key)
-            if y > 25:
-                y -= 26
-            y = y % 26
-            coded_phrase.append(ascii_lowercase[y])
+            shift = (ascii_lowercase.index(char) + key)
+            code = shift % 26 if shift < 25 else (shift - 26) % 26
+            coded_phrase.append(ascii_lowercase[code])
         elif char.isupper():
-            x = ascii_uppercase.index(char)
-            y = (x + key)
-            if y > 26:
-                y -= 26
-            y = y % 26
-            coded_phrase.append(ascii_uppercase[y])
+            shift = (ascii_uppercase.index(char) + key)
+            code = shift % 26 if shift < 25 else (shift - 26) % 26
+            coded_phrase.append(ascii_uppercase[code])
         else:
             coded_phrase.append(char)
     return ''.join(coded_phrase)
