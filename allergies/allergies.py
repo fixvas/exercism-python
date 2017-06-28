@@ -23,12 +23,11 @@ class Allergies(object):
             if self.score == i:
                 self.lst.append(Allergies.a_list[i])
                 break
-            elif self.score - i < 0:
-                continue
-            else:
+            elif not self.score - i < 0:
                 self.lst.append(Allergies.a_list[i])
                 self.score -= i
         self.lst.reverse()
+
         self.score = score
 
     def is_allergic_to(self, name):
