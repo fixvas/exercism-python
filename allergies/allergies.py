@@ -20,10 +20,7 @@ class Allergies(object):
             self.score -= 2**math.floor(math.log2(self.score))
 
         for i in sorted(Allergies.a_list, reverse=True):
-            if self.score == i:
-                self.lst.append(Allergies.a_list[i])
-                break
-            elif not self.score - i < 0:
+            if self.score == i or not self.score - i < 0:
                 self.lst.append(Allergies.a_list[i])
                 self.score -= i
         self.lst.reverse()
