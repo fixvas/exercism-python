@@ -16,16 +16,16 @@ class Allergies(object):
         self.score = score
         self.lst = []
 
-        if self.score > sum(Allergies.a_list):
+        if self.score > sum(self.a_list):
             self.score -= 2**math.floor(math.log2(self.score))
 
-        for i in sorted(Allergies.a_list, reverse=True):
-            if self.score == i or not self.score - i < 0:
-                self.lst.append(Allergies.a_list[i])
+        for i in sorted(self.a_list, reverse=True):
+            if self.score == i or self.score - i > 0:
+                self.lst.append(self.a_list[i])
                 self.score -= i
         self.lst.reverse()
 
         self.score = score
 
     def is_allergic_to(self, name):
-        return True if name in self.lst else False
+        return name in self.lst
