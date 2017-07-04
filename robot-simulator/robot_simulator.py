@@ -10,6 +10,15 @@ class Robot(object):
         self.x = x
         self.y = y
         self.coordinates = (self.x, self.y)
+        self.advance_map = {NORTH: (0, 1),
+                            EAST: (1, 0),
+                            SOUTH: (0, -1),
+                            WEST: (-1, 0)
+                            }
+        self.command_map = {'A': self.advance,
+                            'R': self.turn_right,
+                            'L': self.turn_left
+                            }
 
     def turn_right(self):
         self.bearing = (self.bearing + 1) % 4
@@ -18,21 +27,10 @@ class Robot(object):
         self.bearing = (self.bearing - 1) % 4
 
     def advance(self):
-        if self.bearing == NORTH:
-            self.y += 1
-        elif self.bearing == EAST:
-            self.x += 1
-        elif self.bearing == SOUTH:
-            self.y -= 1
-        elif self.bearing == WEST:
-            self.x -= 1
+        self.x += self.advance_map[self.bearing][0]
+        self.y += self.advance_map[self.bearing][1]
         self.coordinates = (self.x, self.y)
 
     def simulate(self, instr):
         for step in instr:
-            if step == 'A':
-                self.advance()
-            elif step == 'R':
-                self.turn_right()
-            elif step == 'L':
-                self.turn_left()
+            self.command_map[step]()
