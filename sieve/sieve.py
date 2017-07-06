@@ -4,10 +4,6 @@ def sieve(N):
     for number in sequence:
         if sequence[number]:
             res.append(number)
-            factor = 2
-            non_prime = number * factor
-            while non_prime <= N:
+            for non_prime in range(number**2, N+1, number):
                 sequence[non_prime] = False
-                factor += 1
-                non_prime = number * factor
     return res
