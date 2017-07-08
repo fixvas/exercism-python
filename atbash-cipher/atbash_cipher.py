@@ -18,8 +18,4 @@ def encode(text, group=5):
 
 
 def decode(text):
-    res = []
-    for char in text:
-        if char.isalnum():
-            res.append(char.translate(TRANS_TABLE))
-    return ''.join(res)
+    return ''.join(text.split()).translate(TRANS_TABLE)
