@@ -11,7 +11,7 @@ def encode(text, group=5):
     for char in line:
         res.append(char.translate(TRANS_TABLE))
         cnt += 1
-        if cnt % group == 0:
+        if cnt == group:
             res.append(' ')
             cnt = 0
     return ''.join(res).rstrip()
