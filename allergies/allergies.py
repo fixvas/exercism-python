@@ -1,6 +1,3 @@
-import math
-
-
 class Allergies(object):
     a_list = {1: 'eggs',
               2: 'peanuts',
@@ -15,17 +12,9 @@ class Allergies(object):
     def __init__(self, score):
         self.score = score
         self.lst = []
-
-        if self.score > sum(self.a_list):
-            self.score -= 2**math.floor(math.log2(self.score))
-
-        for i in sorted(self.a_list, reverse=True):
-            if self.score == i or self.score - i > 0:
-                self.lst.append(self.a_list[i])
-                self.score -= i
-        self.lst.reverse()
-
-        self.score = score
+        for scr, allergen in sorted(self.a_list.items()):
+            if scr & self.score:
+                self.lst.append(allergen)
 
     def is_allergic_to(self, name):
         return name in self.lst
